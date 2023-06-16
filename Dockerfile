@@ -14,8 +14,8 @@ RUN apk update && \
     #install -y --no-install-recommends gcc
 RUN apk add python3
 RUN apk add py3-pip
-RUN python -m venv .venv
-RUN source .venv/bin/activate
+# RUN python -m venv .venv
+# RUN source .venv/bin/activate
 RUN pip3 install -r requirements.txt
 
 EXPOSE 80
