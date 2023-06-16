@@ -12,6 +12,8 @@ venv
 
 .env
 
+.env.db
+
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -165,3 +167,7 @@ dmypy.json
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/flask,python
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
