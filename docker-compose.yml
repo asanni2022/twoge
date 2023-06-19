@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:latest
+    container_name: twoge-database-container
+    environment:
+      POSTGRES_USER: twoge
+      POSTGRES_PASSWORD: Postgres123
+      POSTGRES_DB: twoge_db
+    ports:
+      - 5432:5432
+    networks:
+      - twoge-net
+    healthcheck:
+      test: ["CMD", "pg_isready" ,"-q", "-d",  "twoge_db", "-U", "twoge"]
+      interval: 30s
+      timeout: 20s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  twoge:
+    build: .
+    container_name: twoge-container
+    environment:
+      SQLALCHEMY_DATABASE_URI: postgresql://twoge:Postgres123@database:5432/twoge_db
+    ports:
+      - 9876:80
+    networks:
+      - twoge-net
+    volumes:
+      - .:/usr/share/nginx/html
+    depends_on:
+      database:
+        condition: service_healthy
+networks:
+  twoge-net:
+    name: twoge-net_network
+    driver: bridge
+volumes:
+  postgres_data:
