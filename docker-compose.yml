@@ -23,7 +23,7 @@ services:
     build: .
     container_name: twoge-container
     environment:
-      SQLALCHEMY_DATABASE_URI: postgresql://postgres:Postgres123@localhost:5432/twoge_db
+      SQLALCHEMY_DATABASE_URI: postgresql://postgres:Postgres123@database:5432/twoge_db
     ports:
       - 9876:80
     networks:
