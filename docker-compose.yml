@@ -25,7 +25,7 @@ services:
     environment:
       SQLALCHEMY_DATABASE_URI: postgresql://postgres:Postgres123@database:5432/twoge_db
     ports:
-      - 9876:80
+      - 80:80
     networks:
       - twoge-net
     # volumes:
