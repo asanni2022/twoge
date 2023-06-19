@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   database:
-    image: postgres:latest
+    image: postgres:13
     container_name: twoge-database-container
     environment:
       POSTGRES_USER: twoge
@@ -16,8 +16,8 @@ services:
       interval: 30s
       timeout: 20s
       retries: 10
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data/
 
   twoge:
     build: .
@@ -28,8 +28,8 @@ services:
       - 9876:80
     networks:
       - twoge-net
-    volumes:
-      - .:/usr/share/nginx/html
+    # volumes:
+    #   - .:/usr/share/nginx/html
     depends_on:
       database:
         condition: service_healthy
@@ -37,5 +37,5 @@ networks:
   twoge-net:
     name: twoge-net_network
     driver: bridge
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
